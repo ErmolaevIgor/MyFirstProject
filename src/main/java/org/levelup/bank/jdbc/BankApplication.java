@@ -1,7 +1,7 @@
 package org.levelup.bank.jdbc;
 
 import lombok.SneakyThrows;
-import org.levelup.bank.domain.Client;
+import org.levelup.bank.domain.ClientEntity;
 import org.levelup.bank.jdbc.pool.PostgreSqlConnectionManager;
 
 import java.time.LocalDate;
@@ -20,13 +20,13 @@ public class BankApplication {
         clientRepository.printAllClients();
         System.out.println();
 
-        Collection<Client> clients = clientRepository.findClientsWhenBirthdayBetween(
+        Collection<ClientEntity> clientEntities = clientRepository.findClientsWhenBirthdayBetween(
                 LocalDate.of(1950, 1, 1),
                 LocalDate.of(1980, 12, 31)
         );
 
-        for (Client client : clients) {
-            System.out.println(client.getClientId() + " " + client.getLastName() + " " + client.getBirthday());
+        for (ClientEntity clientEntity : clientEntities) {
+            System.out.println(clientEntity.getClientId() + " " + clientEntity.getLastName() + " " + clientEntity.getBirthday());
         }
         System.out.println();
 

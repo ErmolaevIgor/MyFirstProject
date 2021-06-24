@@ -2,7 +2,7 @@ package org.levelup.bank.jdbc;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import org.levelup.bank.domain.Client;
+import org.levelup.bank.domain.ClientEntity;
 import org.levelup.bank.util.DateUtils;
 
 import java.sql.*;
@@ -58,7 +58,7 @@ public class JdbcClientRepository implements ClientRepository{
 
     @Override
     @SneakyThrows // позволяет не писать try-catch для checked исключений
-    public Collection<Client> findClientsWhenBirthdayBetween(LocalDate begin, LocalDate end) {
+    public Collection<ClientEntity> findClientsWhenBirthdayBetween(LocalDate begin, LocalDate end) {
         String sql = "select * from clients where birthday2 between ? and ?";
         try (Connection connection = cm.openConnection()) {
 
@@ -74,20 +74,20 @@ public class JdbcClientRepository implements ClientRepository{
         }
     }
 
-    private Collection<Client> retrieveClientsFromResultSet(ResultSet rs) throws SQLException {
+    private Collection<ClientEntity> retrieveClientsFromResultSet(ResultSet rs) throws SQLException {
         ConnectionTimeFactory.getConnection().openConnection();
-        Collection<Client> clients = new ArrayList<>();
+        Collection<ClientEntity> clientEntities = new ArrayList<>();
         while (rs.next()) {
-            Client client = new Client(
+            ClientEntity clientEntity = new ClientEntity(
                     rs.getLong("id"),
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("middle_name"),
                     DateUtils.ofDate(rs.getDate("birthday2"))
             );
-                    clients.add(client);
+                    clientEntities.add(clientEntity);
         }
-        return clients;
+        return clientEntities;
     }
 
 }

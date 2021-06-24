@@ -1,6 +1,6 @@
 package org.levelup.bank.jdbc;
 
-import org.levelup.bank.domain.Client;
+import org.levelup.bank.domain.ClientEntity;
 
 import java.time.LocalDate;
 import java.util.Collection;
@@ -16,6 +16,6 @@ public interface ClientRepository {
 
     void printAllClients();
 
-    Collection<Client> findClientsWhenBirthdayBetween(LocalDate begin, LocalDate end);
+    Collection<ClientEntity> findClientsWhenBirthdayBetween(LocalDate begin, LocalDate end);
 
 }

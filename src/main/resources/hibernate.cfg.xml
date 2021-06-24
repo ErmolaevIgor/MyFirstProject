@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- Database settings           -->
+        <!-- JDBC Driver                 -->
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <!-- JDBC Url                    -->
+        <property name="hibernate.connection.url">jdbc:postgresql://127.0.0.1:5432/bank_application</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">%?Pzbmeu2T</property>
+
+        <!-- Hibernate settings          -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <!-- validate                    -->
+        <!-- update                      -->
+        <!-- create                      -->
+        <!-- create-drop                 -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <mapping class="org.levelup.bank.domain.ClientEntity" />
+        <mapping class="org.levelup.bank.domain.AccountEntity" />
+        <mapping class="org.levelup.bank.domain.ClientDataEntity" />
+        <mapping class="org.levelup.bank.domain.OperationEntity" />
+        <mapping class="org.levelup.bank.domain.ManagerEntity" />
+        <mapping class="org.levelup.bank.domain.FilialEntity" />
+
+    </session-factory>
+
+</hibernate-configuration>

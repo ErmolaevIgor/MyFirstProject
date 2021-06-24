@@ -13,11 +13,14 @@ public class ProfilingInvocationHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        long start = System.nanoTime();
-
-        Object result = method.invoke(original, args); // вызов оригинального метода (из оригинального/реального объекта)
-        System.out.println("Execution time: " + (System.nanoTime() - start));
-        return result;
+        Method originalMethod = original.getClass().getDeclaredMethod(method.getName(), method.getParameterTypes());
+        if (originalMethod.getAnnotation(Profiling.class) != null) {
+            long start = System.nanoTime();
+            Object result = method.invoke(original, args); // вызов оригинального метода (из оригинального/реального объекта)
+            System.out.println("Execution time: " + (System.nanoTime() - start));
+            return result;
+        }
+        return method.invoke(original, args);
     }
 
 }
