@@ -14,10 +14,8 @@ public class DateUtilsTest {
     public void testOfLocalDate_whenInputIsNotNull_thenConvertToJavaUtilDate() {
         // given
         LocalDate testDate = LocalDate.of(2020, 1, 10);
-
         // when
         Date result = DateUtils.ofLocalDate(testDate);
-
         // then
         Assertions.assertEquals(testDate.atStartOfDay(ZoneId.systemDefault()).toEpochSecond() * 1000, result.getTime());
     }
