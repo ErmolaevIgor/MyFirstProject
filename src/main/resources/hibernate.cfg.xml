@@ -28,6 +28,7 @@
         <mapping class="org.levelup.bank.domain.OperationEntity" />
         <mapping class="org.levelup.bank.domain.ManagerEntity" />
         <mapping class="org.levelup.bank.domain.FilialEntity" />
+        <mapping class="org.levelup.bank.domain.FilialManagerEntity" />
 
     </session-factory>
 

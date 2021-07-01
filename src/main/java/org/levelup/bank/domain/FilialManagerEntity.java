@@ -15,7 +15,7 @@ public class FilialManagerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long managerId;
-    private Long filialId;
+    private int managerId;
+    private int filialId;
 
 }

@@ -18,8 +18,8 @@ public class AccountRepositoryIT {
 
     @BeforeAll
     public static void setupRepositories() {
-        clientRepository = new ClientRepository(ItHibernateUtils.getFactory());
-        accountRepository = new AccountRepository(ItHibernateUtils.getFactory());
+        clientRepository = new ClientRepository(ITHibernateUtils.getFactory());
+        accountRepository = new AccountRepository(ITHibernateUtils.getFactory());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class AccountRepositoryIT {
         AccountEntity result = accountRepository.createAccount(client.getClientId());
 
         // then
-        Session s = ItHibernateUtils.getFactory().openSession();
+        Session s = ITHibernateUtils.getFactory().openSession();
         AccountEntity account = s.get(AccountEntity.class, result.getAccountNumber());
 
         Assertions.assertEquals(account.getAccountNumber(), result.getAccountNumber());

@@ -8,7 +8,7 @@ import org.levelup.bank.domain.*;
 
 import java.util.Properties;
 
-public class ItHibernateUtils {
+public class ITHibernateUtils {
 
     private static SessionFactory factory = loadTestFactory();
 

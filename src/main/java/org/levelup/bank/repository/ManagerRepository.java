@@ -6,14 +6,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.levelup.bank.domain.ManagerEntity;
 
-@RequiredArgsConstructor
-public class ManagerRepository {
+public class ManagerRepository extends AbstractRepository {
 
-    private final SessionFactory factory;
+    public ManagerRepository(SessionFactory factory) {
+        super(factory);
+    }
 
     public ManagerEntity addManager(String firstName, String lastName) {
-        try (Session sessions = factory.openSession()) {
-            Transaction tx = sessions.beginTransaction();
+        try (Session session = factory.openSession()) {
+            Transaction tx = session.beginTransaction();
             // ACID
             // A - Атомарность (atomicity)
             // C - Consistency (Консистентность) - Согласованность данных
@@ -24,7 +25,7 @@ public class ManagerRepository {
             manager.setFirstName(firstName);
             manager.setLastName(lastName);
 
-            sessions.persist(manager);
+            session.persist(manager);
 
             tx.commit();
             return manager;
@@ -35,17 +36,18 @@ public class ManagerRepository {
     // session.load(Class, Id)
 
     public ManagerEntity getById(Integer managerId) {
-        try (Session session = factory.openSession()) {
-            return session.get(ManagerEntity.class, managerId);
-        }
+//        try (Session session = factory.openSession()) {
+//            return session.get(ManagerEntity.class, managerId);
+//        }
+        return supplyWithoutTransaction(s -> s.get(ManagerEntity.class, managerId));
     }
 
     public ManagerEntity loadById(Integer managerId) {
-        try (Session session = factory.openSession()) {
-            return session.load(ManagerEntity.class, managerId);
-            // me = proxy(ManageEntity(id=managerId))
-            // me.getFirstName() -> select * from manager
-        }
+//        try (Session session = factory.openSession()) {
+//            return session.load(ManagerEntity.class, managerId);
+        // me = proxy(ManageEntity(id=managerId))
+        // me.getFirstName() -> select * from manager
+        return supplyWithoutTransaction(s -> s.load(ManagerEntity.class, managerId));
     }
 
 }
