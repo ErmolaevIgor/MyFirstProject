@@ -11,7 +11,7 @@ public class App {
         FindDuplicatesProducer producer1 = new FindDuplicatesProducer(queue);
         FindDuplicatesProducer producer2 = new FindDuplicatesProducer(queue);
         new Thread(producer1, "producer1").start();
-        new Thread(producer1, "producer2").start();
+        new Thread(producer2, "producer2").start();
 
         DuplicateConsumer consumer1 = new DuplicateConsumer(queue);
         Thread ct1 = new Thread(consumer1, "consumer1");
