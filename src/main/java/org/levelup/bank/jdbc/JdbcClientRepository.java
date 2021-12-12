@@ -83,7 +83,7 @@ public class JdbcClientRepository implements ClientRepository{
                     rs.getString("first_name"),
                     rs.getString("last_name"),
                     rs.getString("middle_name"),
-                    DateUtils.ofDate(rs.getDate("birthday2"))
+                    DateUtils.ofDate(rs.getDate("birthday"))
             );
                     clientEntities.add(clientEntity);
         }

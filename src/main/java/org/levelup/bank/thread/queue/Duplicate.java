@@ -7,7 +7,6 @@ public class Duplicate {
 
     int originalId; // private final
     int duplicateId;
-
     // AllArgsConstructor
     // Getter
     // EqualsAndHashCode

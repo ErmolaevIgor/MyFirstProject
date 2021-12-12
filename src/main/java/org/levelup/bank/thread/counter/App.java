@@ -23,5 +23,4 @@ public class App {
 
         System.out.println("Total count: " + valueCounter.getCounter());
     }
-
 }

@@ -6,7 +6,7 @@ public class App {
 
     @SneakyThrows
     public static void main(String[] args) {
-        Queue queue = new SynchronizedQueue();
+        Queue queue = new ReentrantLockQueue();
 
         FindDuplicatesProducer producer1 = new FindDuplicatesProducer(queue);
         FindDuplicatesProducer producer2 = new FindDuplicatesProducer(queue);
@@ -23,7 +23,7 @@ public class App {
         System.out.println();
 
         DuplicateConsumer consumer2 = new DuplicateConsumer(queue);
-        Thread ct2 = new Thread(consumer1, "consumer2");
+        Thread ct2 = new Thread(consumer2, "consumer2");
         ct2.start();
 
         // t.interrupt()

@@ -20,10 +20,12 @@ public class DuplicateConsumer implements Runnable{
                 Thread.sleep(200);
                 isInterrupted = Thread.currentThread().isInterrupted();
             } catch (InterruptedException exc) {
-                System.out.println("Поток был прерван во время сна или ожидания:)");
+                System.out.println();
+                System.out.println("Поток был прерван во время сна или ожидания!");
                 isInterrupted = true;
             }
         }
-        System.out.println("Поток " + Thread.currentThread().getName() + " завершен");
+        System.out.println("Поток " + Thread.currentThread().getName() + " завершен!");
+        System.out.println();
     }
 }

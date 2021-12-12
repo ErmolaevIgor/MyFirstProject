@@ -6,8 +6,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.levelup.bank.domain.FilialManagerEntity;
 
-import java.math.BigInteger;
-
 @RequiredArgsConstructor
 public class OperationRepository {
 
